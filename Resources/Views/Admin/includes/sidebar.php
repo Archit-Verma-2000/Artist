@@ -87,7 +87,6 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.php">404 Page</a>
-            <a class="collapse-item" href="blank.php">Blank Page</a>
         </div>
     </div>
 </li>

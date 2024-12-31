@@ -3,28 +3,17 @@ RewriteEngine On
 
 # Redirects root url to index.php file in public folder
 RewriteRule ^$ Public/index.php [L]
+RewriteRule ^index.php$ Public/index.php [L]
+RewriteRule ^login.php$ Resources/Views/login.php [L] 
+RewriteRule ^register.php$ Resources/Views/register.php [L] 
+RewriteRule ^products.php$ Resources/Views/Customer/main.php [L] 
+RewriteRule ^product-detail.php$ Resources/Views/Customer/main.php [L] 
+RewriteRule ^artist-detail.php$ Resources/Views/Customer/main.php [L] 
+RewriteRule ^products.php$ Resources/Views/Customer/main.php [L] 
+RewriteRule ^artist-profile.php$ Resources/Views/Customer/main.php [L] 
 
 # if request is for a file or directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Rewrite Rule for Pages
-RewriteRule ^Admin.php$ Resources/Views/Admin/Admin.php [L]
-RewriteRule ^index.php$ Public/index.php [L]
-RewriteRule ^products.php$ Resources/Views/Customer/products.php [L]
-RewriteRule ^login.php$ Resources/Views/login.php [L]
-RewriteRule ^register.php$ Resources/Views/register.php [L]
-
-# Rewrite Rule for Admin Page Links
-RewriteRule ^charts.php$ Resources/Views/Admin/charts.php [L]
-RewriteRule ^tables.php$ Resources/Views/Admin/tables.php [L]
-RewriteRule ^404.php$ Resources/Views/Admin/404.php [L]
-RewriteRule ^forgot-password.php$ Resources/Views/Admin/forgot-password.php [L]
-RewriteRule ^buttons.php$ Resources/Views/Admin/buttons.php [L]
-RewriteRule ^cards.php$ Resources/Views/Admin/cards.php [L]
-RewriteRule ^utilities-color.php$ Resources/Views/Admin/utilities-color.php [L]
-RewriteRule ^utilities-border.php$ Resources/Views/Admin/utilities-border.php [L]
-RewriteRule ^utilities-animation.php$ Resources/Views/Admin/utilities-animation.php [L]
-RewriteRule ^utilities-other.php$ Resources/Views/Admin/utilities-other.php [L]
-RewriteRule ^blank.php$ Resources/Views/Admin/blank.php [L]
-
+RewriteCond %{REQUEST_URI} ^/[^/]+/[^/]+\.php$
+RewriteRule ^(.*)$ Resources/Views/Admin/main.php [L]
