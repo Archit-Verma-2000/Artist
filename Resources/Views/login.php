@@ -48,11 +48,17 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                  aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email" id="email">
+                                                placeholder="Enter Email Address..."  id="email" pattern='^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$'>
+                                            <div id="email-valid">
+
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                 placeholder="Password" name="password" id="password">
+                                                 placeholder="Password" name="password" id="password" pattern='^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{10,}'>
+                                            <div id="password-valid">
+
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -106,13 +112,70 @@
     window.addEventListener("load",()=>{
        email=document.getElementById("email");
        password=document.getElementById("password");
+       errorEmail=["valid email"];
+       errorPass=["Minimum length 10","atleast one Lowercase","atleast one Uppercase","atleast one special character"];
        email.addEventListener("keyup",(e)=>{
-            let inputText=(e.target.value).slice(-1);
+            // let inputText=(e.target.value).slice(-1);
             // console.log(inputText);
+            let emailValid=document.getElementById("email-valid");
+            emailValid.innerHTML="";
+            errorEmail.forEach((error)=>{
+                let innerDiv=document.createElement("div");
+                let innerDivText=document.createTextNode(error);
+                innerDiv.appendChild(innerDivText);
+                emailValid.appendChild(innerDiv);
+                emailValid.style.color="red";
+                emailValid.style.marginLeft="30px";
+            })
+            if(e.target.value==="")
+            {
+                e.target.style.border="2px solid red";
+                console.log("email field required"); 
+            }
+            else if(!email.checkValidity())
+            {
+                if(email.validity.patternMismatch)
+                {
+                    e.target.style.border="2px solid red";
+                    console.log("pattern mismatch");
+                }
+            }
+            else
+            {
+                    e.target.style.border="2px solid green"
+                    console.log("valid email format");
+            }
        });
-       password.addEventListener("keyup",(e)=>{
-            let inputText=(e.target.value).slice(-1);
+       password.addEventListener("input",(e)=>{
+            // let inputText=(e.target.value).slice(-1);
             // console.log(inputText);
+            let passwordValid=document.getElementById("password-valid");
+            passwordValid.innerHTML="";
+            errorPass.forEach((error)=>{
+                let innerDiv=document.createElement("div");
+                let innerDivText=document.createTextNode(error);
+                innerDiv.appendChild(innerDivText);
+                passwordValid.appendChild(innerDiv);
+                passwordValid.style.color="red";
+                passwordValid.style.marginLeft="30px";
+            });
+            if(e.target.value==="")
+            {
+                    e.target.style.border="2px solid red"
+                    console.log("password field required");
+            }
+            else if(!password.checkValidity())
+            {
+                    if(password.validity.patternMismatch)
+                    {
+                        e.target.style.border="2px solid red"
+                        console.log("password not matched");
+                    }
+            }
+            else
+            {       e.target.style.border="2px solid green";
+                    console.log("password matched");
+            }
        });     
     })
 </script>

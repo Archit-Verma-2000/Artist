@@ -1,3 +1,13 @@
+<?php
+     $path=$_SERVER["REQUEST_URI"];
+     $file=pathinfo($path,PATHINFO_BASENAME);
+     $filepath="pages/".$file;
+     if(!file_Exists($filepath))
+     {
+          header("Location:index.php");
+          exit();
+     }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -28,24 +38,15 @@
 
                 <!-- Begin Page Content -->
                  <?php
-                    $path=$_SERVER["REQUEST_URI"];
-                    $file=pathinfo($path,PATHINFO_BASENAME);
-                    if(file_exists($file))
+                    if($file=="main.php")
                     {
-                        if($file=="main.php")
-                        {
-                            include_once "Admin.php";
-                        }
-                        else
-                        {
-                            include_once $file;
-                        }
+                        include_once "pages/Admin.php";
                     }
-                   else
-                   {
-                    header("Location:index.php");
-                    exit();
-                   }
+                    else if(file_exists($filepath))
+                    {
+                       include_once $filepath;
+                    }
+                 
                  ?>
                 <!-- /.container-fluid -->
 

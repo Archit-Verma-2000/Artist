@@ -15,15 +15,16 @@
     <?php
                     $path=$_SERVER["REQUEST_URI"];
                     $file=pathinfo($path,PATHINFO_BASENAME);
-                    if(file_exists($file))
+                    $file_path="pages/".$file;
+                    if(file_exists($file_path))
                     {
                         if($file=="main.php")
                         {
-                            include_once "Admin.php";
+                            include_once "pages/Admin.php";
                         }
                         else
                         {
-                            include_once $file;
+                            include_once $file_path;
                         }
                     }
                    else
