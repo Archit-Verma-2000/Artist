@@ -10,31 +10,31 @@
                     <div class="col-md-6 slider-bar">
                         <div id="slider" class="owl-carousel product-slider">
                             <div class="item">
-                                <img src="./images/shop-list.png" />
+                                <img src="Public/assets/Customer/images/shop-list.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/rs-layer-wraprs-layer.png" />
+                                <img src="Public/assets/Customer/images/rs-layer-wraprs-layer.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/shop-list-img.png" />
+                                <img src="Public/assets/Customer/images/shop-list-img.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/second.png" />
+                                <img src="Public/assets/Customer/images/second.png" />
                             </div>
                         </div>
 
                         <div id="thumb" class="owl-carousel product-thumb">
                             <div class="item">
-                                <img src="./images/shop-list.png" />
+                                <img src="Public/assets/Customer/images/shop-list.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/rs-layer-wraprs-layer.png" />
+                                <img src="Public/assets/Customer/images/rs-layer-wraprs-layer.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/shop-list-img.png" />
+                                <img src="Public/assets/Customer/images/shop-list-img.png" />
                             </div>
                             <div class="item">
-                                <img src="./images/second.png" />
+                                <img src="Public/assets/Customer/images/second.png" />
                             </div>
                         </div>
                     </div>
@@ -205,14 +205,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/Products-Artist.png" alt="">
+                                <img src="Public/assets/Customer/images/Products-Artist.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -239,14 +239,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/second.png" alt="">
+                                <img src="Public/assets/Customer/images/second.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -273,14 +273,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/shop-list.png" alt="">
+                                <img src="Public/assets/Customer/images/shop-list.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -307,14 +307,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/shop-list-img.png" alt="">
+                                <img src="Public/assets/Customer/images/shop-list-img.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -341,14 +341,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/Products-Artist.png" alt="">
+                                <img src="Public/assets/Customer/images/Products-Artist.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -375,14 +375,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/second.png" alt="">
+                                <img src="Public/assets/Customer/images/second.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -409,14 +409,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/shop-list.png" alt="">
+                                <img src="Public/assets/Customer/images/shop-list.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -443,14 +443,14 @@
                     <div>
                         <div class="products-artist">
                             <div class="artist-inner-box">
-                                <img src="images/shop-list-img.png" alt="">
+                                <img src="Public/assets/Customer/images/shop-list-img.png" alt="">
                                 <div class="dress-in">
                                     <h4>Fashion Dress 1</h4>
                                     <p>Fusce bibendum, nibh sed, cons ectetur adipi scingeliras
                                         sod</p>
                                     <div class="artist-name">
                                         <div class="artist-img">
-                                            <img src="images/Ellipse.png" alt="">
+                                            <img src="Public/assets/Customer/images/Ellipse.png" alt="">
                                             <p>By Artist Name</p>
                                         </div>
                                         <div class="star">
@@ -486,80 +486,10 @@
         include "includes/footer.php"
     ?>
     <!-- Footer section -->
-    <footer>
-		<div class="container">
-			<div class="footer-inner">
-				<div class="row">
-					<div class="col-lg-3">
-						<div class="footer-logo">
-							<a href="index.html">
-								<img src="images/footer-logo.png" alt="footer-logo">
-							</a>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-							<div class="footer-icon">
-								<p>Follow us:</p>
-								<ul>
-									<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i>
-										</a></li>
-									<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i>
-										</a></li>
-									<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i>
-										</a></li>
-									<li><a href=""><img src="images/p.png" alt="">
-										</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-lg-2">
-						<div class="footr-links">
-							<h6>Customer Service</h6>
-							<ul>
-								<li class=""><a href="index.html" class="active">Home</a>
-								</li>
-								<li><a href="products.html">Products </a></li>
-								<li><a href="artist-profile.html">Artist-Profile</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="footr-links">
-							<h6>Contact info</h6>
-							<p>Schweizer Skischu <br>
-								Hühnerhubelstrasse 95 CH-3123
-								Belp</p>
-							<ul>
-								<li><a href="tel: +41 31 820 41 12">Tel. +41 31 820 41 12</a></li>
-								<li><a href="mailto: drees@example.com">drees@example.com</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="subscribe">
-							<h4>Subscribe</h4>
-							<p>Subscribe to e-mail &
-								and get 10%* discount</p>
-							<form action="">
-								<input type="text" placeholder="Email">
-								<button type="submit">Submit</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="copyright">
-			<p>© 2023 Copyright</p>
-		</div>
-	</footer>
-    <!-- Footer section -->
-    <!-- Footer section -->
 
 
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="Public/assets/Customer/js/jquery.js"></script>
+    <script src="Public/assets/Customer/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

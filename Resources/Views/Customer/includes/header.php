@@ -32,7 +32,7 @@
 							<div class="icons">
 								<a href="" class="carts ">
 									<img src="Public/assets/Customer/images/cart.png" alt="" class="">
-									<!-- <img src="images/cart-w.png" alt="" class="mobile"> -->
+									<!-- <img src="Public/assets/Customer/images/cart-w.png" alt="" class="mobile"> -->
 								</a>
 							</div>
 							<span class="toggle_menu" onclick="openNav()"><i class="fa fa-bars"></i></span>
