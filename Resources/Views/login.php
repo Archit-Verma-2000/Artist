@@ -44,18 +44,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" name="Login-form">
+                                    <form class="user" id="Login-form">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                  aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..."  id="email" pattern='^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$'>
+                                                placeholder="Enter Email Address..."  id="email" pattern='^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$' required>
                                             <div id="email-valid">
 
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                 placeholder="Password" name="password" id="password" pattern='^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{10,}'>
+                                                 placeholder="Password" name="password" id="password" pattern='^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{5,}' required>
                                             <div id="password-valid">
 
                                             </div>
@@ -112,7 +112,7 @@
     window.addEventListener("load",()=>{
        email=document.getElementById("email");
        password=document.getElementById("password");
-       errorEmail=["valid email"];
+       errorEmail=["email field required","pattern matched"];
        errorPass=["Minimum length 10","atleast one Lowercase","atleast one Uppercase","atleast one special character"];
        email.addEventListener("keyup",(e)=>{
             // let inputText=(e.target.value).slice(-1);
@@ -134,6 +134,7 @@
             }
             else if(!email.checkValidity())
             {
+                emailValid.children[0].style.color="green";
                 if(email.validity.patternMismatch)
                 {
                     e.target.style.border="2px solid red";
@@ -142,9 +143,21 @@
             }
             else
             {
+                    emailValid.children[0].style.color="green";
+                    emailValid.children[1].style.color="green";
                     e.target.style.border="2px solid green"
                     console.log("valid email format");
             }
+       });
+       email.addEventListener("click",(e)=>{
+            let passwordValid=document.getElementById("password-valid");
+            password.style.border="";
+            passwordValid.innerHTML="";
+       });
+       password.addEventListener("click",(e)=>{
+            let emailValid=document.getElementById("email-valid");
+            email.style.border="";
+            emailValid.innerHTML="";
        });
        password.addEventListener("input",(e)=>{
             // let inputText=(e.target.value).slice(-1);
@@ -163,6 +176,7 @@
             {
                     e.target.style.border="2px solid red"
                     console.log("password field required");
+                    passwordValid.innerHTML="";
             }
             else if(!password.checkValidity())
             {
@@ -170,13 +184,50 @@
                     {
                         e.target.style.border="2px solid red"
                         console.log("password not matched");
+                        passValidation(passwordValid);
                     }
             }
             else
             {       e.target.style.border="2px solid green";
                     console.log("password matched");
+                    passValidation(passwordValid);
             }
-       });     
+       });   
+       function passValidation(passwordValid){
+                        let lengthRegex=/.{10,}/;
+                        let upperRegex=/(?=.*[A-Z])/;
+                        let LowerRegex=/(?=.*[a-z])/;
+                        let SpecialRegex=/(?=.*\W+)/;
+                        if(lengthRegex.test(password.value))
+                        {
+                            passwordValid.children[0].style.color="green";
+                        }
+                        if(LowerRegex.test(password.value))
+                        {
+                            passwordValid.children[1].style.color="green";
+                        }
+                        if(upperRegex.test(password.value))
+                        {
+                            passwordValid.children[2].style.color="green";
+                        }
+                        if(SpecialRegex.test(password.value))
+                        {
+                            passwordValid.children[3].style.color="green";
+                        }
+       }
+
+       document.querySelector("#Loginbtn").addEventListener("click",(e)=>{
+            e.preventDefault();
+            let Login=document.querySelector("#Login-form");
+            if(Login.checkValidity())
+            {
+                // console.log("validity passed")
+            }
+            else
+            {
+                // console.log("validity failed")
+            }
+        });
     })
 </script>
 </html>
