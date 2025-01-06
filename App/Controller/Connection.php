@@ -1,6 +1,8 @@
-<?php
+<?php    
+    namespace Conn;
     require "../../vendor/autoload.php";
-    $dotenv=Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
+    use Dotenv\Dotenv;
+    $dotenv=Dotenv::createImmutable(__DIR__ . "/../../");
     $dotenv->load();
     Class Connect{
         private static $dsn;
@@ -14,10 +16,9 @@
             self::$db_user=$_ENV["Db_user"];
             self::$db_pass=$_ENV["Db_password"];
             try{
-                $conn=new PDO(self::$dsn,self::$db_user,self::$db_pass);
-               
+                $this->conn=new \PDO(self::$dsn,self::$db_user,self::$db_pass);
             }
-            catch(PDOException $e)
+            catch(\PDOException $e)
             {
                 echo $e->getMessage();
             }

@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" 
-                                        placeholder="First Name" id="fname" required>
+                                        placeholder="First Name" id="fname" name="fname" required>
                                 </div>
                                 <div id="fname-error">
 
@@ -62,7 +62,7 @@
                             <div class="form-group ">
                                 <div class="col-sm-12 mt-3">
                                     <input type="text" class="form-control form-control-user" 
-                                        placeholder="Last Name" id="lname" required>
+                                        placeholder="Last Name" id="lname" name="lname" required>
                                 </div>
                                 <div id="lname-error">
 
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mt-3">
                                     <input type="email" class="form-control form-control-user" 
-                                    placeholder="Email Address" id="email" required>
+                                    placeholder="Email Address" id="email" name="email" required>
                                 </div>
                                 <div id="email-error">
 
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
-                                        placeholder="Password" id="pass" required>
+                                        placeholder="Password" id="pass" name="pass" required>
                                 </div>
                                 <div id="pass-error">
 
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mt-3">
                                     <input type="password" class="form-control form-control-user"
-                                         placeholder="Repeat Password" id="rpass" required>
+                                         placeholder="Repeat Password" id="rpass" name="rpass" required>
                                 </div>
                                 <div id="rpass-error">
 
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                     </div>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block" id="Register">
+                    <a type="btn" class="btn btn-primary btn-user btn-block" id="Register">
                         Register Account
                     </a>
                     <hr>
@@ -153,8 +153,6 @@
 </body>
 <script>
     window.addEventListener("load",()=>{
-        console.log(document.getElementsByName("option"));
-        console.log(this.name.value);
         /*<<<<<<<<Form Validation>>>>>>>>>> */
             let errorFlag=false;
             let fname=document.getElementById(
@@ -419,20 +417,35 @@
                 this.email.style.border="";
             });
         /*Blur event on input*/
-        
+        let form=document.getElementById("registerForm");
+        var register=new Promise((resolve,reject)=>{
+            let fd=new FormData(form);
+            console.log(document.getElementById("fname").value);
+            
+        });
         /*Register Form request*/
         document.querySelector("#Register").addEventListener("click",function(e){
                 e.preventDefault();
-                let form=document.getElementById("registerForm");
                 if(form.checkValidity()&&!errorFlag)
                 {
                     if(pass.value==rpass.value)
                     {
-                        new Form
+                        new Promise((resolve,reject)=>{
+                            let fd=new FormData(form);
+                            fetch("App/Controller/Register.php",{
+                                body:fd,
+                                method:"POST",
+                            })
+                            .then((response) => response.text())
+                            .then((data) => {resolve(data)})
+                            .catch((error) => {reject(error)});
+                        })
+                        .then((data) => {console.log(data)})  
+                        .catch((error) => {console.log(error)});   
                     }
                     else
                     {
-            
+                        console.log("password dont match")
                     }
                 }
                 else
