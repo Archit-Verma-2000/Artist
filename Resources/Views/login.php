@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                 placeholder="Password" name="password" id="password" pattern='^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{5,}' required>
+                                                 placeholder="Password" name="password" id="password" pattern='^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{8,}' required>
                                             <div id="password-valid">
 
                                             </div>
@@ -113,7 +113,7 @@
        email=document.getElementById("email");
        password=document.getElementById("password");
        errorEmail=["email field required","pattern matched"];
-       errorPass=["Minimum length 10","atleast one Lowercase","atleast one Uppercase","atleast one special character"];
+       errorPass=["Minimum length 8","atleast one Lowercase","atleast one Uppercase","atleast one special character"];
        email.addEventListener("keyup",(e)=>{
             // let inputText=(e.target.value).slice(-1);
             // console.log(inputText);
@@ -194,7 +194,7 @@
             }
        });   
        function passValidation(passwordValid){
-                        let lengthRegex=/.{10,}/;
+                        let lengthRegex=/.{4,}/;
                         let upperRegex=/(?=.*[A-Z])/;
                         let LowerRegex=/(?=.*[a-z])/;
                         let SpecialRegex=/(?=.*\W+)/;

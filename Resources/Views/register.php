@@ -49,11 +49,11 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
-                        <form class="user">
+                        <form class="user" id="registerForm">
                             <div class="form-group">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" 
-                                        placeholder="First Name" id="fname">
+                                        placeholder="First Name" id="fname" required>
                                 </div>
                                 <div id="fname-error">
 
@@ -62,7 +62,7 @@
                             <div class="form-group ">
                                 <div class="col-sm-12 mt-3">
                                     <input type="text" class="form-control form-control-user" 
-                                        placeholder="Last Name" id="lname">
+                                        placeholder="Last Name" id="lname" required>
                                 </div>
                                 <div id="lname-error">
 
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mt-3">
                                     <input type="email" class="form-control form-control-user" 
-                                    placeholder="Email Address" id="email">
+                                    placeholder="Email Address" id="email" required>
                                 </div>
                                 <div id="email-error">
 
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
-                                        placeholder="Password" id="pass">
+                                        placeholder="Password" id="pass" required>
                                 </div>
                                 <div id="pass-error">
 
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12 mt-3">
                                     <input type="password" class="form-control form-control-user"
-                                         placeholder="Repeat Password" id="rpass">
+                                         placeholder="Repeat Password" id="rpass" required>
                                 </div>
                                 <div id="rpass-error">
 
@@ -97,14 +97,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 mt-3">
-                                <select class="form-select   rounded-pill"  style="color: #6e707e;" id="role">
-                                <option selected>Select Role</option>
+                                <select class="form-select   rounded-pill"  style="color: #6e707e;" name="option" id="role" required>
+                                <option selected value="">Select Role</option>
                                 <?php
                                 $arr = array(0 => "Admin", "User");
                                
                                 foreach ($arr as $index => $value) {
                                 ?>  
-                                    <option value="<?= $value ?>"><?= $value ?></option>
+                                    <option value="<?= $value ?>" ><?= $value ?></option>
                                 <?php
                                 }
                                 ?>
@@ -153,12 +153,28 @@
 </body>
 <script>
     window.addEventListener("load",()=>{
-            let fname=document.getElementById("fname");
-            let lname=document.getElementById("lname");
-            let email=document.getElementById("email");
-            let pass=document.getElementById("pass");
-            let rpass=document.getElementById("rpass");
-            let role=document.getElementById("role");
+        console.log(document.getElementsByName("option"));
+        console.log(this.name.value);
+        /*<<<<<<<<Form Validation>>>>>>>>>> */
+            let errorFlag=false;
+            let fname=document.getElementById(
+                "fname"
+            );
+            let lname=document.getElementById(
+                "lname"
+            );
+            let email=document.getElementById(
+                "email"
+            );
+            let pass=document.getElementById(
+                "pass"
+            );
+            let rpass=document.getElementById(
+                "rpass"
+            );
+            let role=document.getElementById(
+                "role"
+            );
             fnameError=document.getElementById(
                 "fname-error"
             );
@@ -180,14 +196,17 @@
             role.addEventListener("focus",()=>{
                 role.children[0].style.display="none";
             })
+            /*Checks for fname validation*/
             fname.addEventListener("input",(e)=>{
-                let fname=e.target.value;
+                let fnameVal=e.target.value;
                 fnameError.innerHTML="";
                 innerUnorderList=document.createElement("ul");
                 fnameError.appendChild(innerUnorderList);
-                nameRegex=/(?!.*\s+)(?!.*\d) [a-zA-z]{6}/;
-                if(fname=="")
+                nameRegex=/^(?!.*\s+)(?!.*\d)(?!.*\W+)[a-zA-Z]{5,}/;
+                if(fnameVal=="")
                 {
+                    errorFlag=true;
+                    fname.style.border="2px solid red";
                     innerList=document.createElement("li");
                     innerListText=document.createTextNode("field cant be empty");
                     innerList.appendChild(innerListText);
@@ -196,39 +215,185 @@
                     innerUnorderList.style.marginLeft="30px";
                     console.log("name required");
                 }
-                else  if(!nameRegex.test(fname))
+                else if(!nameRegex.test(fnameVal))
                 {   
-                        lengthRegex=/^[a-zA-z]{6}$/;
+                        errorFlag=true;
+                        fname.style.border="2px solid red";
+                        lengthRegex=/^.{5,}$/;
                         digitRegex=/\d/;
                         whitespaceRegex=/\s/;
-                        if(!lengthRegex.test(fname)) 
+                        SpecialRegex=/\W+/;
+                        if(!lengthRegex.test(fnameVal)) 
                         {
-                            let msg="only 6 character required";
+                            let msg="minimum 6 character required";
                             nameValidation(msg,innerUnorderList);
                         }
-                        if(digitRegex.test(fname))
+                        if(digitRegex.test(fnameVal))
                         {
                             let msg="no digits allowed";
                             nameValidation(msg,innerUnorderList);
                             
                         }
-                        if(whitespaceRegex.test(fname))
+                        if(whitespaceRegex.test(fnameVal))
                         {
                             let msg="no whitespace allowed";
+                            nameValidation(msg,innerUnorderList);
+                        }
+                        if(SpecialRegex.test(fnameVal))
+                        {
+                            let msg="Special Characters not allowed";
                             nameValidation(msg,innerUnorderList);
                         }
                 }
                 else
                 {
-                    fnameError.innerHTML="";
+                    errorFlag=false;
                     console.log("regex passed");
+                    fnameError.innerHTML="";
+                    fname.style.border="2px solid green";
+                    
                 }
             });
-            fname.addEventListener("blur",(e)=>{
-                fnameError.innerHTML="";
+            /*Checks for fname validation*/
+
+            /*Checks for lname validation*/
+            lname.addEventListener("input",()=>{
+                lnameObject=this.lname;
+                regexPat=/^(?!.*\s+)(?!.*\d)(?!.*\W+)[a-zA-Z]{5,}/;
+                lnameError.innerHTML="";
+                let unorderedList=document.createElement("ul");
+                lnameError.appendChild(unorderedList);
+                lnameObject.style.border="2px solid red";
+                if(lnameObject.value=="")
+                {
+                    errorFlag=true;
+                    msg="field is required";
+                    nameValidation(msg,unorderedList);
+                    console.log("Fields cant be empty")
+                }
+                else if(!regexPat.test(lnameObject.value))
+                {
+                    errorFlag=true;
+                    lengthRegex=/^.{5,}$/;
+                    digitRegex=/\d/;
+                    whitespaceRegex=/\s/;
+                    SpecialRegex=/\W+/;
+                    if(!lengthRegex.test(lnameObject.value)) {
+                        let msg="only 5 character required";
+                        nameValidation(msg,unorderedList);
+                        console.log("minimum 5 charcter allowed");
+                    }
+                    if(digitRegex.test(lnameObject.value)) {
+                        let msg="no digits allowed";
+                        nameValidation(msg,unorderedList);
+                        console.log("no digits allowed");
+                    }
+                    if(whitespaceRegex.test(lnameObject.value)) {
+                        let msg="no whitespace allowed";
+                        nameValidation(msg,unorderedList);
+                        console.log("no whitespace allowed");
+                    }
+                    if(SpecialRegex.test(lnameObject.value)) {
+                        let msg="no special characters allowed";
+                        nameValidation(msg,unorderedList);
+                        console.log("no whitespace allowed");
+                    }
+                }
+                else
+                {
+                    errorFlag=false;
+                    lnameObject.style.border="2px solid green";
+                    console.log("pattern matched");
+                }
             });
-            document.querySelector("#Register").addEventListener("click",(e)=>{
-                e.preventDefault();
+            /*Checks for lname validation*/
+
+            /*Checks for email validation*/
+                email.addEventListener("input",()=>{
+                    emailObject=this.email;
+                    emailObject.style.border="2px solid red";
+                    emailError.innerHTML="";
+                    let unorderedList=document.createElement("ul");
+                    emailError.appendChild(unorderedList);
+                    emailRegex=/^[A-za-z0-9._%+\-]+@[A-za-z.\-]+\.[a-zA-Z]{2,}/;
+                    if(emailObject.value=="")
+                    {
+                        errorFlag=true;
+                        msg="email is required";
+                        nameValidation(msg,unorderedList);
+                    }
+                    else if(!emailRegex.test(emailObject.value))
+                    {
+                        errorFlag=true;
+                        msg="email not valid";
+                        nameValidation(msg,unorderedList);
+                    }
+                    else
+                    {
+                        errorFlag=false;
+                        emailObject.style.border="2px solid green"; 
+                    }
+                });
+            /*Checks for email validation*/
+            /* Password validation */
+                pass.addEventListener("input",()=>{
+                    passObject=this.pass;    
+                    passObject.style.border="2px solid red";  
+                    passError.innerHTML="";
+                    unorderedList=document.createElement("ul");
+                    passError.appendChild(unorderedList);
+                    passRegex=/^(?!^$)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+)(?=.*[0-9])[a-zA-z0-9~`!@#$%^@*\(\)-_+=\{\{\[\]\|\\;:"<>,.\/?]{8,}$/;
+                    if(passObject.value=="")
+                    {
+                        errorFlag=true;
+                        msg="password is required";
+                        nameValidation(msg,unorderedList);
+                    }
+                    else if(!passRegex.test(passObject.value))
+                    {
+                        errorFlag=true;
+                        let msg
+                        lengthRegex=/^.{8,}/;
+                        upperRegex=/[A-Z]/;
+                        lowerRegex=/[a-z]/;
+                        digitRegex=/\d/;
+                        specialRegex=/\W+/;
+                        if(!lengthRegex.test(passObject.value))
+                        {
+                            msg="password should be minimum of 8 length";
+                            nameValidation(msg,unorderedList);
+                        }
+                        if(!upperRegex.test(passObject.value))
+                        {
+                            msg="one Uppercase character required";
+                            nameValidation(msg,unorderedList);
+                        }
+                        if(!lowerRegex.test(passObject.value))
+                        {
+                            msg="one Lowercase character required";
+                            nameValidation(msg,unorderedList);
+                        }
+                        if(!digitRegex.test(passObject.value))
+                        {
+                            msg="one Digit required";
+                            nameValidation(msg,unorderedList);
+                        }
+                        if(!specialRegex.test(passObject.value))
+                        {
+                            msg="one Special character required";
+                            nameValidation(msg,unorderedList);
+                        }
+                        
+                    }
+                    else
+                    {
+                        errorFlag=false;
+                        passObject.style.border="2px solid green";
+                    }
+                });
+            /* Password validation */
+            role.addEventListener("input",()=>{
+                console.log(this.role.value);
             });
         function nameValidation(msg,innerUnorderList)
         {
@@ -238,7 +403,44 @@
             innerUnorderList.appendChild(innerList);
             innerUnorderList.style.color="red";
             innerUnorderList.style.marginLeft="30px";
-        }   
+        } 
+        /*<<<<<<<<Form Validation>>>>>>>>>> */
+        /*Blur event on input*/
+        fname.addEventListener("blur",(e)=>{
+                fnameError.innerHTML="";
+                this.fname.style.border="";
+            });
+            lname.addEventListener("blur",(e)=>{
+                lnameError.innerHTML="";
+                this.lname.style.border="";
+            });
+            email.addEventListener("blur",(e)=>{
+                emailError.innerHTML="";
+                this.email.style.border="";
+            });
+        /*Blur event on input*/
+        
+        /*Register Form request*/
+        document.querySelector("#Register").addEventListener("click",function(e){
+                e.preventDefault();
+                let form=document.getElementById("registerForm");
+                if(form.checkValidity()&&!errorFlag)
+                {
+                    if(pass.value==rpass.value)
+                    {
+                        new Form
+                    }
+                    else
+                    {
+            
+                    }
+                }
+                else
+                {
+                    console.log("invalid");
+                }
+            });
+        /*Register Form request*/
     })
     
 </script>
