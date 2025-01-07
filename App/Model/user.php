@@ -16,6 +16,7 @@
             self::$stmt->bindParam(':pass',$pass);
             // Execute the statement
             self::$stmt->execute();
+            return true;
         } 
         Public function userExists($conn,$email) {
             self::$sql="SELECT email FROM users where email=:email";
@@ -26,6 +27,16 @@
             //fetching associative array
             $res=self::$stmt->fetch(\PDO::FETCH_ASSOC);
             return($res);
+        }
+        public function userInfo($email) {
+            self::$sql="SELECT * FROM users where email=:email";
+            self::$stmt=$conn->conn->prepare(self::$sql);
+            self::$stmt->bindParam(':email',$email);
+            // Execute the statement
+            self::$stmt->execute();
+            //fetching associative array
+            $res=self::$stmt->fetch(\PDO::FETCH_ASSOC);
+            return($res); 
         }
     }
 ?>

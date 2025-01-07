@@ -9,6 +9,7 @@
         private $pass;
         private $rpass;
         private $option;
+        public $msg;
         function __set($key, $value) {
             if(property_exists($this, $key)) {
                 $this->$key=self::sanitize($value);
@@ -24,6 +25,12 @@
             $value=stripslashes($value);
             $value=htmlspecialchars($value);
             return $value;
+        }
+        public function msg($type,$msg) {
+            $this->msg=
+            '<div class="alert alert-'. $type .' alert-dismissable fade-show">
+                <button type="btn">&times<button><span>'. $msg .'<span>
+            </div>';
         }
     }
     
@@ -48,7 +55,6 @@
         $option=$Register->option;//getting option
 
         $allowedEmail=["architv18@gmail.com","archit.avology@gmail.com"];//allowed email for admin
-
         $User=new User\registerUser(); //registerUser class object
         $conn=new Conn\Connect();
        
@@ -56,33 +62,52 @@
                 if(in_array($email,$allowedEmail)) {
                     if($User->userExists($conn,$email))
                     {
-                        echo "user exists";
+                        $msg="user exists";
                     }
                     else
                     {
-                        $name=$fname." ".$lname;
-                        $User->Register($conn,$option,$name,$email,$pass);
+                        $msg="succesfully registered";
+                        $res=$User->userInfo($email);
+                        $_SESSION["User"]=$res;
+                        setcookie("user",$email,time()+60*60*24*30,"/");
+                        echo json_encode(["status"=>"success","msg"=>$User->msg("success",$msg),"role"=>$option]);
                     }
                 }
                 else
                 {
-                    echo "Not a valid email";
+                        $msg="Not a valid email";
+                        echo json_encode(["status"=>"failed","msg"=>$User->msg("success",$msg)]);
                 }
             }
             else if($option==="User") {
                 if(!in_array($email,$allowedEmail)){
-                    if($User->userExists($conn,$email)){
-                        echo "user exists";
+                    if($User->userExists($conn,$email)) {
+
+                        $msg="User Already exists";
+                        echo json_encode(["status"=>"failed","msg"=>$User->msg("danger",$msg)]);
                     }
                 else{
                     $name=$fname." ".$lname;
                     $hash=password_hash($pass,PASSWORD_DEFAULT);
-                    $User->Register($conn,$option,$name,$email,$hash);
+                    if($User->Register($conn,$option,$name,$email,$hash))
+                    {
+                        $msg="succesfully registered";
+                        $res=$User->userInfo($email);
+                        $_SESSION["User"]=$res;
+                        setcookie("user",$email,time()+60*60*24*30,"/");
+                        echo json_encode(["status"=>"success","msg"=>$User->msg("success",$msg),"role"=>$option]);
+                    }
+                    else
+                    {
+                        
+                        echo "Error occured try again";
+                    }
                 }   
             }
             else
             {
-                echo "email invalid";
+                        $msg="Not a valid email";
+                        echo json_encode(["status"=>"failed","msg"=>$User->msg("danger",$msg)]);
             }
          }
     }
