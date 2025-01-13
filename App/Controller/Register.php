@@ -31,11 +31,15 @@
             '<div class="alert alert-'. $type .' alert-dismissable fade-show">
                 <button type="btn">&times<button><span>'. $msg .'<span>
             </div>';
+            return $msg;
         }
     }
     
     if($_SERVER["REQUEST_METHOD"]=="POST") {
+
         $Register=new Register();
+        $User=new User\registerUser(); //registerUser class object
+        $conn=new Conn\Connect();
         $Register->fname=$_POST["fname"];//setting fname using set magic function
         $fname=$Register->fname;//getting fname
 
@@ -55,8 +59,6 @@
         $option=$Register->option;//getting option
 
         $allowedEmail=["architv18@gmail.com","archit.avology@gmail.com"];//allowed email for admin
-        $User=new User\registerUser(); //registerUser class object
-        $conn=new Conn\Connect();
        
             if($option==="Admin") {
                 if(in_array($email,$allowedEmail)) {
@@ -67,16 +69,16 @@
                     else
                     {
                         $msg="succesfully registered";
-                        $res=$User->userInfo($email);
-                        $_SESSION["User"]=$res;
-                        setcookie("user",$email,time()+60*60*24*30,"/");
-                        echo json_encode(["status"=>"success","msg"=>$User->msg("success",$msg),"role"=>$option]);
+                        $res=$User->userInfo($conn,$email);
+                        $_SESSION["Admin"]=$res;
+                        setcookie("Admin",$email,time()+60*60*24*30,"/");
+                        echo json_encode(["status"=>"success","msg"=>$Register->msg("success",$msg),"role"=>$option]);
                     }
                 }
                 else
                 {
                         $msg="Not a valid email";
-                        echo json_encode(["status"=>"failed","msg"=>$User->msg("success",$msg)]);
+                        echo json_encode(["status"=>"failed","msg"=>$Register->msg("success",$msg)]);
                 }
             }
             else if($option==="User") {
@@ -84,7 +86,7 @@
                     if($User->userExists($conn,$email)) {
 
                         $msg="User Already exists";
-                        echo json_encode(["status"=>"failed","msg"=>$User->msg("danger",$msg)]);
+                        echo json_encode(["status"=>"failed","msg"=>$Register->msg("danger",$msg)]);
                     }
                 else{
                     $name=$fname." ".$lname;
@@ -92,22 +94,22 @@
                     if($User->Register($conn,$option,$name,$email,$hash))
                     {
                         $msg="succesfully registered";
-                        $res=$User->userInfo($email);
+                        $res=$User->userInfo($conn,$email);
                         $_SESSION["User"]=$res;
                         setcookie("user",$email,time()+60*60*24*30,"/");
-                        echo json_encode(["status"=>"success","msg"=>$User->msg("success",$msg),"role"=>$option]);
+                        echo json_encode(["status"=>"success","msg"=>$Register->msg("success",$msg),"role"=>$option]);
                     }
                     else
                     {
-                        
-                        echo "Error occured try again";
+                        $msg="Error occured try again";
+                        echo json_encode(["status"=>"failed","msg"=>$Register->msg("danger",$msg)]);
                     }
                 }   
             }
             else
             {
                         $msg="Not a valid email";
-                        echo json_encode(["status"=>"failed","msg"=>$User->msg("danger",$msg)]);
+                        echo json_encode(["status"=>"failed","msg"=>$Register->msg("danger",$msg)]);
             }
          }
     }

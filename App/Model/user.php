@@ -28,7 +28,7 @@
             $res=self::$stmt->fetch(\PDO::FETCH_ASSOC);
             return($res);
         }
-        public function userInfo($email) {
+        public function userInfo($conn,$email) {
             self::$sql="SELECT * FROM users where email=:email";
             self::$stmt=$conn->conn->prepare(self::$sql);
             self::$stmt->bindParam(':email',$email);
